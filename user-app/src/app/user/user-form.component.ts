@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { User } from 'src/shared/User';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -21,8 +21,7 @@ export class UserFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-   
-   
+    
   }
 
   validateEmail(email: string) {
