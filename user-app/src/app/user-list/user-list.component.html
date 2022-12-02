@@ -1,0 +1,26 @@
+<mat-list class="user-list">
+  <div class="list-container">
+    <h5 matSubheader>User Directory</h5>
+
+    <mat-list-item style="height: auto;" *ngFor="let user of users" class="user-list-item">
+      <button *ngIf="editUserId !== user.id" (click)="getUser(user)" mat-button>
+        <mat-icon>zoom_in</mat-icon>
+      </button>
+      <button *ngIf="editUserId === user.id" (click)="closeEditForm()" mat-button>
+        <mat-icon>zoom_out</mat-icon>
+      </button>
+      <h4 matLine>{{user.username}}</h4>
+      <div matLine>{{user.email}}</div>
+      <div class="form-container" style="height:auto" matLine *ngIf="editUserId === user.id">
+        <app-user-form [currentUser]="user" (userUpdatePayload)="updateUser($event)" (userDeletePayload)="deleteUser($event)"></app-user-form>
+      </div>
+    </mat-list-item>
+    <mat-list-item style="height:auto">
+      <div class="form-container" style="height:auto" matLine *ngIf="showCreateUserForm">
+        <h4 matLine>Create User</h4>
+        <app-user-form [currentUser]="newUser" (userUpdatePayload)="createUser($event)" (cancelNewUser)="closeEditForm()"></app-user-form>
+      </div>
+      <button *ngIf="!showCreateUserForm" id="create-user-button" mat-button (click)="openCreateUserForm()">Create User</button>
+    </mat-list-item>
+  </div>
+</mat-list>
